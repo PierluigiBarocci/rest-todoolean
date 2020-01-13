@@ -11,9 +11,23 @@
         <title>Todoolean</title>
     </head>
     <body>
+        <main>
+            <h1>The TODO List</h1>
+            <div id="user-adding">
+                <input id="user-input" type="text" placeholder="Inserisci un elemento alla TODO list...">
+                <i id="add-button" class="far fa-plus-square fa-2x"></i>
+            </div>
+            <div id="todo-list">
+            </div>
+        </main>
 
-        <script id="template" type="text/x-handlebars-template">
-                
+        <script id="todo-template" type="text/x-handlebars-template">
+            <div class="todo-item" data-todo_id="{{ todo-id }}">
+                <p class="todo-text">{{ todo-text }}</p>
+                <i class="far fa-trash-alt delete show"></i>
+                <i class="far fa-edit edit show"></i>
+                <i class="far fa-save save hide"></i>
+            </div>
         </script>
     </body>
 </html>

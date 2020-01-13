@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-    var my_personal_url = 'http://157.230.17.132:3001/todos';
+    var my_personal_url = 'http://157.230.17.132:3001/todos/';
 
     var template_html = $("#todo-template").html();
     var template_function = Handlebars.compile(template_html);
@@ -17,6 +17,11 @@ $(document).ready(function(){
         $('#user-input').val('');
     });
 
+    $('#todo-list').on('click', '.delete.show', function(){
+        var card_father = $(this).parent();
+        var current_id = card_father.attr('data-todo_id');
+        deleting_element(current_id);
+    });
 
     // CRUD Functions
 
@@ -55,6 +60,21 @@ $(document).ready(function(){
             'data': {
                 'text': element
             },
+            'success': function(data) {
+                getting_list();
+            },
+            'error': function() {
+                alert('errore');
+            }
+        });
+    }
+
+    // Delete Function
+
+    function deleting_element(id) {
+        $.ajax({
+            'url': my_personal_url + id,
+            'method': 'DELETE',
             'success': function(data) {
                 getting_list();
             },

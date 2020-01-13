@@ -3,7 +3,9 @@
     padding: 0;
     box-sizing: border-box;
 }
-
+body {
+    background-color: #F5F5F5;
+}
 main {
     width: 80%;
     margin: 0 auto;
@@ -27,7 +29,7 @@ main h1 {
     margin: 20px 10px;
     padding: 10px;
     font-size: 18px;
-    width: 30%;
+    width: 40%;
 }
 
 #todo-list {
@@ -36,7 +38,7 @@ main h1 {
     justify-content: flex-start;
 }
 .todo-item {
-    width: 18%;
+    width: 250px;
     height: 80px;
     border-radius: 5px;
     background-color: #0070B7;
@@ -48,6 +50,18 @@ main h1 {
     line-height: 80px;
     text-align: center;
     font-size: 20px;
+}
+.edit-item {
+    margin-top: 25px;
+    margin-left: 25px;
+    padding: 5px;
+    font-size: 16px;
+}
+.todo-item p.hide {
+    display: none;
+}
+.edit-item.hide {
+    display: none;
 }
 .todo-item i.edit,.todo-item i.save {
     position: absolute;

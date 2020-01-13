@@ -23,6 +23,33 @@ $(document).ready(function(){
         deleting_element(current_id);
     });
 
+    $('#todo-list').on('click', '.edit.show', function(){
+        var card_father = $(this).parent();
+        $('.edit-item').addClass('hide');
+        $('.todo-text').removeClass('hide');
+        $('i.save').removeClass('show').addClass('hide');
+        $('i.edit').removeClass('hide').addClass('show');
+        $(this).removeClass('show').addClass('hide');
+        card_father.find('i.save').removeClass('hide').addClass('show');
+        card_father.find('.todo-text').addClass('hide');
+        card_father.find('.edit-item').removeClass('hide');
+    });
+
+    $('#todo-list').on('click', '.save.show', function(){
+        var card_father = $(this).parent();
+        var current_id = card_father.attr('data-todo_id');
+        var updated_value = card_father.find('.edit-item').val().trim();
+        if (updated_value.length) {
+            update_element(current_id, updated_value);
+        } else {
+            getting_list();
+        }
+        $(this).removeClass('show').addClass('hide');
+        card_father.find('i.edit').removeClass('hide').addClass('show');
+        card_father.find('.todo-text').removeClass('hide');
+        card_father.find('.edit-item').addClass('hide');
+    });
+
     // CRUD Functions
 
 
@@ -83,15 +110,23 @@ $(document).ready(function(){
             }
         });
     }
-    // Nome repo: rest-todoolean
-    // Creare una piccola applicazione web per gestire una lista di "todo". Le operazioni principali che devo essere implementate sono:
-    // la lettura di tutti i todo
-    // l'inserimento di un nuovo todo
-    // la cancellazione di un todo.
-    // BONUS: gestire la modifica di un todo.
 
+    // Update Function
 
-
-
+    function update_element(id, element) {
+        $.ajax({
+            'url': my_personal_url + id,
+            'method': 'PUT',
+            'data': {
+                'text': element
+            },
+            'success': function(data) {
+                getting_list();
+            },
+            'error': function() {
+                alert('errore');
+            }
+        });
+    }
 
 })

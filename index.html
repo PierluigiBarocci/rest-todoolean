@@ -20,10 +20,10 @@
             <div id="todo-list">
             </div>
         </main>
-
         <script id="todo-template" type="text/x-handlebars-template">
             <div class="todo-item" data-todo_id="{{ todo-id }}">
                 <p class="todo-text">{{ todo-text }}</p>
+                <input class="edit-item hide" type="text" value="{{ todo-text }}">                
                 <i class="far fa-trash-alt delete show"></i>
                 <i class="far fa-edit edit show"></i>
                 <i class="far fa-save save hide"></i>

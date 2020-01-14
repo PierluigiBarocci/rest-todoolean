@@ -44,10 +44,6 @@ $(document).ready(function(){
         } else {
             getting_list();
         }
-        $(this).removeClass('show').addClass('hide');
-        card_father.find('i.edit').removeClass('hide').addClass('show');
-        card_father.find('.todo-text').removeClass('hide');
-        card_father.find('.edit-item').addClass('hide');
     });
 
     // CRUD Functions

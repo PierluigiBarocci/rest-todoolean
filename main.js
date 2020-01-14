@@ -45,6 +45,13 @@ $(document).ready(function(){
             getting_list();
         }
     });
+    $('#todo-list').on('click', '.todo-text', function(){
+        var card_father = $(this).parent();
+        var current_id = card_father.attr('data-todo_id');
+        var done = card_father.hasClass('done');
+        set_to_done(current_id, done)
+    });
+
 
     // CRUD Functions
 
@@ -60,9 +67,11 @@ $(document).ready(function(){
                 for (var i = 0; i < data.length; i++) {
                     var todo_item = data[i].text;
                     var todo_id = data[i].id;
+                    var status_id = data[i].status;
                     var properties = {
                         'todo-text': todo_item,
-                        'todo-id': todo_id
+                        'todo-id': todo_id,
+                        'done': (status_id == 1 ? 'done' : '')
                     };
                     var final = template_function(properties);
                     $('#todo-list').append(final);
@@ -112,7 +121,7 @@ $(document).ready(function(){
     function update_element(id, element) {
         $.ajax({
             'url': my_personal_url + id,
-            'method': 'PUT',
+            'method': 'PATCH',
             'data': {
                 'text': element
             },
@@ -125,4 +134,21 @@ $(document).ready(function(){
         });
     }
 
+    // Status Function
+
+    function set_to_done (id, fatto) {
+        $.ajax({
+            'url': my_personal_url + id,
+            'method': 'PATCH',
+            'data': {
+                'status': (fatto == false ? 1 : 0)
+            },
+            'success': function(data) {
+                getting_list();
+            },
+            'error': function() {
+                alert('errore');
+            }
+        });
+    }
 })

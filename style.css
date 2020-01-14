@@ -50,6 +50,14 @@ main h1 {
     line-height: 80px;
     text-align: center;
     font-size: 20px;
+    cursor: pointer;
+}
+.todo-item.done p {
+    color: red;
+    text-decoration: line-through;
+}
+.todo-item.done {
+    opacity: 0.8;
 }
 .edit-item {
     margin-top: 25px;
